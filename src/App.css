@@ -1,0 +1,25 @@
+#root {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.ListaProductos {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.Productos {
+  display: flex;
+  flex-direction: column;
+  padding: 20px 30px;
+  border-radius: 10px;
+  margin: 15px;
+  background-color: greenyellow;
+}
+
+.Imagen {
+  height: 150px;
+  width: 200px;
+}
