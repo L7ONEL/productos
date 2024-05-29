@@ -8,7 +8,8 @@ export default class App extends Component {
     this.state = {
       categorias: [],
       productos: [],
-      categoria_id: ""
+      categoria_id: 1,
+      error: ""
     }
   }
 
@@ -17,7 +18,7 @@ export default class App extends Component {
   }
 
   buscarCategorias() {
-    const url = "http://10.0.4.103:3000/api/categorias" 
+    const url = "https://productos.ctpoba.edu.ar/api/categorias" 
     axios.get(url)
     .then((Response) => {
       this.setState({categorias: Response.data.categorias})
@@ -29,14 +30,20 @@ export default class App extends Component {
 
   buscarProductos(categoria_id) {
     this.state.productos = []
-    const url = "http://10.0.4.103:3000/api/productos"
+    this.state.error = ""
+    const url = "https://productos.ctpoba.edu.ar/api/productos"
     const config = {
       params: {categoria_id}
     }
 
     axios.get(url, config)
     .then((Response) => {
-      this.setState({productos: Response.data.productos})
+      if (Response.data.productos != "") {
+        this.setState({productos: Response.data.productos})
+      } else {
+        this.setState({error: "No hay productos disponibles en esta categoria."})
+      }
+      
     })
     .catch((error) => {
       console.log(error);
@@ -75,6 +82,7 @@ export default class App extends Component {
               <img src={cont.imagen_url} alt="" className="Imagen" />
             </div>
           )}
+          <h2 className="Error">{this.state.error}</h2>
         </div>
       </div>
     )
