@@ -6,6 +6,7 @@
 
 .Cuerpo {
   margin-left: 10px;
+  margin-top: 10px;
 }
 
 .ListaProductos {
@@ -30,4 +31,39 @@
 
 .Error {
   color: red;
+}
+
+.styled-select {
+  padding: 10px;
+  font-size: 16px;
+  color: #333;
+  background-color: #fff;
+  border: 2px solid #007BFF;
+  border-radius: 5px;
+  cursor: pointer;
+  appearance: none;
+}
+
+.styled-select:focus {
+  border-color: #0056b3;
+  outline: none;
+}
+
+.styled-select option {
+  background-color: #fff;
+  color: #333;
+}
+
+.Boton {
+  background-color: #007BFF;
+    color: #fff;
+    border: none;
+    height: 50px;
+    width: 150px;
+    font-size: large;
+    border-radius: 10px;
+}
+
+.Boton:hover {
+  background-color: #0056b3;
 }

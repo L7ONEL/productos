@@ -54,6 +54,7 @@ export default class App extends Component {
     return(
       <div className="Cuerpo">
         <select
+          className="styled-select"
           value={this.state.cat_id}
           onChange={(e) => this.setState({categoria_id:e.target.value})}
         >
@@ -67,6 +68,7 @@ export default class App extends Component {
         </select>
         <br /><br />
         <input 
+          className="Boton"
           type="button"
           value="Buscar productos"
           onClick={() => this.buscarProductos(this.state.categoria_id)}
