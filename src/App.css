@@ -4,6 +4,10 @@
   flex-direction: column;
 }
 
+.Cuerpo {
+  margin-left: 10px;
+}
+
 .ListaProductos {
   display: flex;
   flex-direction: row;

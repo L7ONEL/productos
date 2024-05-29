@@ -8,12 +8,16 @@ export default class App extends Component {
     this.state = {
       categorias: [],
       productos: [],
-      cat_id: 0
+      categoria_id: ""
     }
   }
 
+  componentDidMount() {
+    this.buscarCategorias();
+  }
+
   buscarCategorias() {
-    const url = "https://productos.ctpoba.edu.ar/api/categorias" 
+    const url = "http://10.0.4.103:3000/api/categorias" 
     axios.get(url)
     .then((Response) => {
       this.setState({categorias: Response.data.categorias})
@@ -23,12 +27,16 @@ export default class App extends Component {
     })
   }
 
-  buscarProductos() {
-    const url = "https://productos.ctpoba.edu.ar/api/productos" 
-    axios.get(url)
+  buscarProductos(categoria_id) {
+    this.state.productos = []
+    const url = "http://10.0.4.103:3000/api/productos"
+    const config = {
+      params: {categoria_id}
+    }
+
+    axios.get(url, config)
     .then((Response) => {
       this.setState({productos: Response.data.productos})
-      console.log(Response.data.productos);
     })
     .catch((error) => {
       console.log(error);
@@ -37,22 +45,16 @@ export default class App extends Component {
 
   render() {
     return(
-      <div>
-        <input 
-          type="button"
-          value="Buscar categorias"
-          onClick={() => this.buscarCategorias()}
-        />
-        <br /><br />
+      <div className="Cuerpo">
         <select
           value={this.state.cat_id}
-          onChange={(e) => this.setState({cat_id:e.target.value})}
+          onChange={(e) => this.setState({categoria_id:e.target.value})}
         >
           {this.state.categorias.map((cont, index) =>
             <option 
               key={cont.id}
               value={cont.id}
-              onChange={(e) => this.setState({cat_id:e.target.value})}
+              onChange={(e) => this.setState({categoria_id:e.target.value})}
             >{cont.nombre}</option>
           )}
         </select>
@@ -60,7 +62,7 @@ export default class App extends Component {
         <input 
           type="button"
           value="Buscar productos"
-          onClick={() => this.buscarProductos()}
+          onClick={() => this.buscarProductos(this.state.categoria_id)}
         />
 
         <div className="ListaProductos">
