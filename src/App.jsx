@@ -1,5 +1,8 @@
 import { Component } from "react";
 import axios from 'axios';
+// import Categorias from './componentes/Categorias'
+import Boton from './componentes/Boton'
+// import Productos from './componentes/Productos'
 import './App.css';
 
 export default class App extends Component {
@@ -66,12 +69,11 @@ export default class App extends Component {
             >{cont.nombre}</option>
           )}
         </select>
+
         <br /><br />
-        <input 
-          className="Boton"
-          type="button"
-          value="Buscar productos"
-          onClick={() => this.buscarProductos(this.state.categoria_id)}
+
+        <Boton 
+          accion={()=> this.buscarProductos(this.state.categoria_id)} 
         />
 
         <div className="ListaProductos">
